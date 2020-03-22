@@ -1,1 +1,1 @@
-Resources to test and develop Ansible playbooks for WIndows management
+Resources to test and develop Ansible playbooks for Windows management
