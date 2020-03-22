@@ -1,0 +1,44 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  
+  - name: Install a single package using chocolatey
+    win_chocolatey:
+      name: putty
+      state: present
+
+  - name: Upgrade all packages installed through chocolatey
+    win_chocolatey:
+      name: all
+      state: latest
+
+  - name: Install multiple packages using chocolatey
+    win_chocolatey:
+      name:
+      - notepadplusplus
+      - putty
+      - 7zip.install
+      state: present
+
+  - name: Install multiple packages sequentially (if required) using chocolatey
+    win_chocolatey:
+      name: '{{ item }}'
+      state: present
+    loop:
+    - notepadplusplus
+    - putty
+    - 7zip.install
+
+  - name: Install specific version of package using chocolatey and lock/pin version
+    win_chocolatey:
+      name: notepadplusplus
+      version: 7.6.3
+      pinned: yes
+      state: present
+
+  - name: Uninstall a package
+    win_chocolatey:
+      name:
+      - notepadplusplus
+      state: absent

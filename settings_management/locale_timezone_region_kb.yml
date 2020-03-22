@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+
+  - name: Set region and unicode to UK, location to Norway and copy to all profiles (set as deafult for all users)
+    win_region: 
+      format: en-GB
+      location: 177
+      unicode_language: en-GB
+      copy_settings: yes
+    register: result
+
+  - name: Set default keyboard to Norwegian
+    win_regedit:
+      path: HKU:\.DEFAULT\Keyboard Layout\Preload
+      name: '1'
+      data: 00000414
+      type: string
+      
+  - name: Reboot system if required
+    win_reboot:
+      when: result.restart_required
+  

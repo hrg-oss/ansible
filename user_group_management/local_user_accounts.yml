@@ -1,0 +1,39 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+
+  - name: Create local user account
+    win_user:
+      name: svc_something
+      password: VeryStrongPassword
+      state: present
+      groups:
+        - Users
+
+  - name: Delete local user account
+    win_user:
+      name: svc_something
+      state: absent
+
+  - name: Create local group
+    win_group:
+      name: Application users
+      description: Users of application X
+      state: present
+
+  - name: Delete local group
+    win_group:
+      name: Application users
+      state: absent
+
+  - name: Add a local user, a domain user and domain group to local group
+    win_group_membership:
+      name: Remote Desktop Users
+      members:
+        - svc_something
+        - DOMAIN\svc_something
+        - DOMAIN\some_group
+      state: present
+
+  - name: 
