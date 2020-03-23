@@ -9,7 +9,7 @@ Resources within contain:
 
 ## Components:
 
-- ["feature_management"(feature_management)] - playbooks for managing Windows server features (e.g. Internet Information Services)
+- "feature_management" - playbooks for managing Windows server features (e.g. Internet Information Services)
 - "file_folder_management" - playbooks for managing files and folders on Windows servers
 - "settings_management" - playbooks for managing Windows server settings (e.g. registry)
 - "software_management" - playbooks for managing software on Windows servers (e.g. install MSIs)
